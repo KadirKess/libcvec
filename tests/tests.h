@@ -9,7 +9,7 @@
 #define assert_test(condition, message)                                        \
     if (!(condition))                                                          \
     {                                                                          \
-        fprintf(stderr, "%s test failed\n", message);                          \
+        fprintf(stderr, "\033[1;31m%s test failed\033[0m\n", message);         \
         exit(1);                                                               \
     }
 

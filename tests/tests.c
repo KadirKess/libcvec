@@ -2,9 +2,12 @@
 
 int main(void)
 {
+    printf("------------------\n");
     printf("Running tests...\n");
+    printf("------------------\n");
 
     printf("Testing Vec2...\n");
+    printf("------------------\n");
 
     test_Vec2i();
     test_Vec2ui();
@@ -14,6 +17,7 @@ int main(void)
     test_Vec2d();
 
     printf("Testing Vec3...\n");
+    printf("------------------\n");
 
     test_Vec3i();
     test_Vec3ui();
@@ -22,7 +26,7 @@ int main(void)
     test_Vec3f();
     test_Vec3d();
 
-    printf("All tests passed!\n");
+    printf("\033[0;32mAll tests passed!\033[0m\n");
 
     return 0;
 }

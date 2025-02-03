@@ -4,7 +4,7 @@
 
 ## Project Structure
 
-```
+```plaintext
 .
 ├── Makefile           # Build script for library and tests
 ├── README.md          # This file
