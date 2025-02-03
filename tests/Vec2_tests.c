@@ -1,4 +1,9 @@
-#include "../build/Vec2.h"
+// Those lines give the src or build path to the Vec2.h file
+#if __INTELLISENSE__
+#    include "../src/Vec2/Vec2.h"
+#else
+#    include "../build/Vec2.h"
+#endif // __INTELLISENSE__
 #include "tests.h"
 
 void test_Vec2i(void)
@@ -115,32 +120,25 @@ void test_Vec2f(void)
     struct Vec2f b = Vec2f_init(3.0f, 4.0f);
 
     struct Vec2f add = Vec2f_add(a, b);
-    assert_test(fabsf(add.x - 4.0f) < 0.0001f && fabsf(add.y - 6.0f) < 0.0001f,
-                "Vec2f add");
+    assert_test(add.x == 4.0f && add.y == 6.0f, "Vec2f add");
 
     struct Vec2f sub = Vec2f_sub(a, b);
-    assert_test(fabsf(sub.x - (-2.0f)) < 0.0001f
-                    && fabsf(sub.y - (-2.0f)) < 0.0001f,
-                "Vec2f sub");
+    assert_test(sub.x == -2.0f && sub.y == -2.0f, "Vec2f sub");
 
     struct Vec2f hadamard = Vec2f_hadamard(a, b);
-    assert_test(fabsf(hadamard.x - 3.0f) < 0.0001f
-                    && fabsf(hadamard.y - 8.0f) < 0.0001f,
-                "Vec2f hadamard");
+    assert_test(hadamard.x == 3.0f && hadamard.y == 8.0f, "Vec2f hadamard");
 
     struct Vec2f mul = Vec2f_mul(a, 2.0f);
-    assert_test(fabsf(mul.x - 2.0f) < 0.0001f && fabsf(mul.y - 4.0f) < 0.0001f,
-                "Vec2f mul");
+    assert_test(mul.x == 2.0f && mul.y == 4.0f, "Vec2f mul");
 
     struct Vec2f div = Vec2f_div(a, 2.0f);
-    assert_test(fabsf(div.x - 0.5f) < 0.0001f && fabsf(div.y - 1.0f) < 0.0001f,
-                "Vec2f div");
+    assert_test(div.x == 0.5f && div.y == 1.0f, "Vec2f div");
 
     float length = Vec2f_length(a);
     assert_test(fabsf(length - 2.23607f) < 0.0001f, "Vec2f length");
 
     float dot = Vec2f_dot(a, b);
-    assert_test(fabsf(dot - 11.0f) < 0.0001f, "Vec2f dot");
+    assert_test(dot == 11.0f, "Vec2f dot");
 
     struct Vec2f norm = Vec2f_normalize(a);
     float normLength = Vec2f_length(norm);
@@ -153,32 +151,25 @@ void test_Vec2d(void)
     struct Vec2d b = Vec2d_init(3.0, 4.0);
 
     struct Vec2d add = Vec2d_add(a, b);
-    assert_test(fabs(add.x - 4.0) < 0.000001 && fabs(add.y - 6.0) < 0.000001,
-                "Vec2d add");
+    assert_test(add.x == 4.0 && add.y == 6.0, "Vec2d add");
 
     struct Vec2d sub = Vec2d_sub(a, b);
-    assert_test(fabs(sub.x - (-2.0)) < 0.000001
-                    && fabs(sub.y - (-2.0)) < 0.000001,
-                "Vec2d sub");
+    assert_test(sub.x == -2.0 && sub.y == -2.0, "Vec2d sub");
 
     struct Vec2d hadamard = Vec2d_hadamard(a, b);
-    assert_test(fabs(hadamard.x - 3.0) < 0.000001
-                    && fabs(hadamard.y - 8.0) < 0.000001,
-                "Vec2d hadamard");
+    assert_test(hadamard.x == 3.0 && hadamard.y == 8.0, "Vec2d hadamard");
 
     struct Vec2d mul = Vec2d_mul(a, 2.0);
-    assert_test(fabs(mul.x - 2.0) < 0.000001 && fabs(mul.y - 4.0) < 0.000001,
-                "Vec2d mul");
+    assert_test(mul.x == 2.0 && mul.y == 4.0, "Vec2d mul");
 
     struct Vec2d div = Vec2d_div(a, 2.0);
-    assert_test(fabs(div.x - 0.5) < 0.000001 && fabs(div.y - 1.0) < 0.000001,
-                "Vec2d div");
+    assert_test(div.x == 0.5 && div.y == 1.0, "Vec2d div");
 
     double length = Vec2d_length(a);
     assert_test(fabs(length - 2.23606797749979) < 0.000001, "Vec2d length");
 
     double dot = Vec2d_dot(a, b);
-    assert_test(fabs(dot - 11.0) < 0.000001, "Vec2d dot");
+    assert_test(dot == 11.0, "Vec2d dot");
 
     struct Vec2d norm = Vec2d_normalize(a);
     double normLength = Vec2d_length(norm);

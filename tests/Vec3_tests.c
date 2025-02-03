@@ -1,4 +1,9 @@
-#include "../build/Vec3.h"
+// Those lines give the src or build path to the Vec3.h file
+#if __INTELLISENSE__
+#    include "../src/Vec3/Vec3.h"
+#else
+#    include "../build/Vec3.h"
+#endif // __INTELLISENSE__
 #include "tests.h"
 
 void test_Vec3i(void)
@@ -119,37 +124,28 @@ void test_Vec3f(void)
     struct Vec3f b = Vec3f_init(4.0f, 5.0f, 6.0f);
 
     struct Vec3f add = Vec3f_add(a, b);
-    assert_test(fabsf(add.x - 5.0f) < 0.0001f && fabsf(add.y - 7.0f) < 0.0001f
-                    && fabsf(add.z - 9.0f) < 0.0001f,
-                "Vec3f add");
+    assert_test(add.x == 5.0f && add.y == 7.0f && add.z == 9.0f, "Vec3f add");
 
     struct Vec3f sub = Vec3f_sub(a, b);
-    assert_test(fabsf(sub.x - (-3.0f)) < 0.0001f
-                    && fabsf(sub.y - (-3.0f)) < 0.0001f
-                    && fabsf(sub.z - (-3.0f)) < 0.0001f,
+    assert_test(sub.x == -3.0f && sub.y == -3.0f && sub.z == -3.0f,
                 "Vec3f sub");
 
     struct Vec3f hadamard = Vec3f_hadamard(a, b);
-    assert_test(fabsf(hadamard.x - 4.0f) < 0.0001f
-                    && fabsf(hadamard.y - 10.0f) < 0.0001f
-                    && fabsf(hadamard.z - 18.0f) < 0.0001f,
+    assert_test(hadamard.x == 4.0f && hadamard.y == 10.0f
+                    && hadamard.z == 18.0f,
                 "Vec3f hadamard");
 
     struct Vec3f mul = Vec3f_mul(a, 2.0f);
-    assert_test(fabsf(mul.x - 2.0f) < 0.0001f && fabsf(mul.y - 4.0f) < 0.0001f
-                    && fabsf(mul.z - 6.0f) < 0.0001f,
-                "Vec3f mul");
+    assert_test(mul.x == 2.0f && mul.y == 4.0f && mul.z == 6.0f, "Vec3f mul");
 
     struct Vec3f div = Vec3f_div(a, 2.0f);
-    assert_test(fabsf(div.x - 0.5f) < 0.0001f && fabsf(div.y - 1.0f) < 0.0001f
-                    && fabsf(div.z - 1.5f) < 0.0001f,
-                "Vec3f div");
+    assert_test(div.x == 0.5f && div.y == 1.0f && div.z == 1.5f, "Vec3f div");
 
     float length = Vec3f_length(a);
     assert_test(fabsf(length - 3.741657f) < 0.0001f, "Vec3f length");
 
     float dot = Vec3f_dot(a, b);
-    assert_test(fabsf(dot - 32.0f) < 0.0001f, "Vec3f dot");
+    assert_test(dot == 32.0f, "Vec3f dot");
 
     struct Vec3f norm = Vec3f_normalize(a);
     float normLength = Vec3f_length(norm);
@@ -162,37 +158,26 @@ void test_Vec3d(void)
     struct Vec3d b = Vec3d_init(4.0, 5.0, 6.0);
 
     struct Vec3d add = Vec3d_add(a, b);
-    assert_test(fabs(add.x - 5.0) < 0.000001 && fabs(add.y - 7.0) < 0.000001
-                    && fabs(add.z - 9.0) < 0.000001,
-                "Vec3d add");
+    assert_test(add.x == 5.0 && add.y == 7.0 && add.z == 9.0, "Vec3d add");
 
     struct Vec3d sub = Vec3d_sub(a, b);
-    assert_test(fabs(sub.x - (-3.0)) < 0.000001
-                    && fabs(sub.y - (-3.0)) < 0.000001
-                    && fabs(sub.z - (-3.0)) < 0.000001,
-                "Vec3d sub");
+    assert_test(sub.x == -3.0 && sub.y == -3.0 && sub.z == -3.0, "Vec3d sub");
 
     struct Vec3d hadamard = Vec3d_hadamard(a, b);
-    assert_test(fabs(hadamard.x - 4.0) < 0.000001
-                    && fabs(hadamard.y - 10.0) < 0.000001
-                    && fabs(hadamard.z - 18.0) < 0.000001,
+    assert_test(hadamard.x == 4.0 && hadamard.y == 10.0 && hadamard.z == 18.0,
                 "Vec3d hadamard");
 
     struct Vec3d mul = Vec3d_mul(a, 2.0);
-    assert_test(fabs(mul.x - 2.0) < 0.000001 && fabs(mul.y - 4.0) < 0.000001
-                    && fabs(mul.z - 6.0) < 0.000001,
-                "Vec3d mul");
+    assert_test(mul.x == 2.0 && mul.y == 4.0 && mul.z == 6.0, "Vec3d mul");
 
     struct Vec3d div = Vec3d_div(a, 2.0);
-    assert_test(fabs(div.x - 0.5) < 0.000001 && fabs(div.y - 1.0) < 0.000001
-                    && fabs(div.z - 1.5) < 0.000001,
-                "Vec3d div");
+    assert_test(div.x == 0.5 && div.y == 1.0 && div.z == 1.5, "Vec3d div");
 
     double length = Vec3d_length(a);
     assert_test(fabs(length - 3.7416573867739413) < 0.000001, "Vec3d length");
 
     double dot = Vec3d_dot(a, b);
-    assert_test(fabs(dot - 32.0) < 0.000001, "Vec3d dot");
+    assert_test(dot == 32.0, "Vec3d dot");
 
     struct Vec3d norm = Vec3d_normalize(a);
     double normLength = Vec3d_length(norm);

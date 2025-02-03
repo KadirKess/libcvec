@@ -29,7 +29,7 @@
     ├── Vec2_tests.c   # Unit tests for Vec2 functionality
     ├── Vec3_tests.c   # Unit tests for Vec3 functionality
     ├── tests.c        # Main test runner
-    └── tests.h        # Header for tests (if needed)
+    └── tests.h        # Header for tests
 ```
 
 ## Features
