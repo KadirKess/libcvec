@@ -1,0 +1,3 @@
+.clang-format
+.vscode
+.pre-commit-config.yaml
